@@ -2,15 +2,23 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { Router, Route, browserHistory } from "react-router"
 import { Provider } from "react-redux"
-import { syncHistoryWithStore } from "react-router-redux"
-import { createStore } from "redux"
+import { syncHistoryWithStore, routerReducer } from "react-router-redux"
+import { createStore, combineReducers } from "redux"
 
-reducer = function(state){
+function reducer(state, action){
+	if (state == undefined) {
+		return {}
+	}
 	return state
 }
+var reducers = combineReducers({
+	app: reducer,
+	routing: routerReducer
+})
 
-store = createStore(reducer)
-reduxHistory = syncHistoryWithStore(browserHistory, store)
+
+const store = createStore(reducers)
+const reduxHistory = syncHistoryWithStore(browserHistory, store)
 
 class Index extends React.Component{
 
