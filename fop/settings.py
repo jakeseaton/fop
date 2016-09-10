@@ -54,7 +54,6 @@ WEBPACK_LOADER = {
         'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
->>>>>>> 87d01fe59973e6efd9e4c5561f6fd3db5241523a
 }
 
 MIDDLEWARE_CLASSES = [
