@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django_common',
-    'student'
+    'student',
+    'trip',
+    'day',
 ]
 
 MIDDLEWARE_CLASSES = [
