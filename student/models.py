@@ -10,11 +10,14 @@ nullable = {
     "null": True
 }
 
+
 class House(enum.Enum):
     quincy = enum.Item(1, "Quincy")
 
+
 class Dorm(enum.Enum):
     mower = enum.Item(1, "Mower")
+
 
 class SchoolType(enum.Enum):
     public = enum.Item(1, "Public")
