@@ -1,0 +1,31 @@
+{
+  "name": "fop",
+  "version": "1.0.0",
+  "description": "This is a web application built for Harvard's First Year Outdoor Program.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakeseaton/fop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakeseaton/fop/issues"
+  },
+  "homepage": "https://github.com/jakeseaton/fop#readme",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-loader": "^6.2.5",
+    "react": "^15.3.1",
+    "react-hot-loader": "^3.0.0-beta.3",
+    "webpack": "^1.13.2",
+    "webpack-bundle-tracker": "0.0.93",
+    "webpack-dev-server": "^1.15.1"
+  },
+  "dependencies": {
+    "json-loader": "^0.5.4"
+  }
+}
