@@ -23,6 +23,7 @@ class SchoolType(enum.Enum):
     public = enum.Item(1, "Public")
     private = enum.Item(2, "Private")
 
+
 # a live updating count of how many shirts you need to order
 class TShirtSize(enum.Enum):
     extra_small = enum.Item(1, "Extra Small")
@@ -30,6 +31,7 @@ class TShirtSize(enum.Enum):
     medium = enum.Item(3, "Medium")
     large = enum.Item(4, "Large")
     extra_large = enum.Item(5, "Extra Large")
+
 
 class State(enum.Enum):
     alabama = enum.Item(2, 'Alabama',
@@ -330,6 +332,7 @@ class Contact(models.Model):
     class Meta:
         abstract = True
 
+
 class Parent(Contact):
     child = models.ForeignKey("student.Fopper", related_name="parent")
 
@@ -341,7 +344,6 @@ class Student(Contact):
     # enums
     house = models.IntegerField(choices=House, **nullable)
     dorm = models.IntegerField(choices=Dorm, **nullable)    
-
 
     school = models.CharField(max_length=255, **nullable)
     school_type = models.IntegerField(choices=SchoolType, default=SchoolType.public)
@@ -359,7 +361,7 @@ class Student(Contact):
 
     huid = models.IntegerField()
 
-    tshirt_size=models.IntegerField(choices=TShirtSize, default=TShirtSize.large)
+    tshirt_size = models.IntegerField(choices=TShirtSize, default=TShirtSize.large)
     # information from fun form
     # 
     # room number?
