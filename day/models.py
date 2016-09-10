@@ -20,7 +20,7 @@ nullable = {
 
 # this should be admin maintained
 class Shelter(models.Model):
-    name = models.CharField(**nullable)
+    name = models.CharField(max_length=255, **nullable)
     state = State
 
     def __str__(self):
@@ -28,7 +28,7 @@ class Shelter(models.Model):
 
 # this should be admin mainained
 class Trail(models.Model):
-    name = models.CharField(**nullable)
+    name = models.CharField(max_length=255, **nullable)
     state = State
 
     def __str__(self):
@@ -39,16 +39,16 @@ class Day(models.Model):
     is_first_day = models.BooleanField(default=False)
     is_last_day = models.BooleanField(default=False)
     day_number = models.IntegerField(**nullable)
-    dropoff_info = models.CharField(**nullable)
+    dropoff_info = models.CharField(max_length=255, **nullable)
     distance = models.IntegerField(**nullable)
     elev_up = models.IntegerField(**nullable)
     elev_down = models.IntegerField(**nullable)
-    shelter_at_night = models.ForeignKey(Shelter, **nullable, related_name="trip_days")
-    trails = models.ManyToManyField(Trail, **nullable, related_name="trip_days")
-    water_on_trail = models.CharField(**nullable)
-    views_and_notes = models.CharField(**nullable)
-    campsite_and_water = models.CharField(**nullable)
-    pickup_info = models.CharField(**nullable)
+    shelter_at_night = models.ForeignKey(Shelter, related_name="trip_days", **nullable)
+    trails = models.ManyToManyField(Trail, related_name="trip_days")
+    water_on_trail = models.CharField(max_length=255, **nullable)
+    views_and_notes = models.CharField(max_length=255, **nullable)
+    campsite_and_water = models.CharField(max_length=255, **nullable)
+    pickup_info = models.CharField(max_length=255, **nullable)
     difficulty = Difficulty
     cambridge_to_trail_distance = models.IntegerField(**nullable)
 
