@@ -1,3 +1,4 @@
 Django==1.10.1
 django-common==0.1.51
 djangorestframework==3.4.6
+django-webpack-loader==0.3.3

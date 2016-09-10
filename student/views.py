@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
 from rest_framework import viewsets
 
@@ -18,3 +19,8 @@ class ParentViewSet(viewsets.ModelViewSet):
 class LeaderViewSet(viewsets.ModelViewSet):
     queryset = Leader.objects.all()
     serializer_class = LeaderSerializer
+
+
+def index(request):
+    return render(request, "form_base.html", {})
+    return HttpResponse("Hello, world. You're at the polls index.")
