@@ -10,14 +10,11 @@ nullable = {
     "null": True
 }
 
-
 class House(enum.Enum):
     quincy = enum.Item(1, "Quincy")
 
-
 class Dorm(enum.Enum):
     mower = enum.Item(1, "Mower")
-
 
 class SchoolType(enum.Enum):
     public = enum.Item(1, "Public")
@@ -322,7 +319,7 @@ class Contact(models.Model):
     email = models.CharField(max_length=255, **nullable)
     phone = models.CharField(max_length=255, **nullable)
 
-    # geograpgic data so that we can 
+    # geograpgic data so that we can
     country = models.CharField(max_length=255, default="USA", **nullable)
     address = models.CharField(max_length=255, **nullable)
     zipcode = models.IntegerField(**nullable)
@@ -344,7 +341,7 @@ class Student(Contact):
 
     # enums
     house = models.IntegerField(choices=House, **nullable)
-    dorm = models.IntegerField(choices=Dorm, **nullable)    
+    dorm = models.IntegerField(choices=Dorm, **nullable)
 
     school = models.CharField(max_length=255, **nullable)
     school_type = models.IntegerField(choices=SchoolType, default=SchoolType.public)
@@ -364,7 +361,7 @@ class Student(Contact):
 
     tshirt_size = models.IntegerField(choices=TShirtSize, default=TShirtSize.large)
     # information from fun form
-    # 
+    #
     # room number?
 
     class Meta:
