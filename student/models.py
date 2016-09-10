@@ -335,6 +335,7 @@ class Parent(Contact):
 
 
 class Student(Contact):
+
     middle_name = models.CharField(max_length=255, **nullable)
     nickname = models.CharField(max_length=255, **nullable)
 
@@ -369,7 +370,10 @@ class Student(Contact):
 
 class Fopper(Student):
     # trip = models.ForeignKey('')
-    pass
+    harvard_financial_aid = models.BooleanField(default=False)
+    requests_fop_financial_aid = models.BooleanField(default=False)
+    receives_fop_financial_aid = models.BooleanField(default=False)
+    accepts_release_of_information = models.BooleanField(default=False)
 
 
 class Leader(Student):
