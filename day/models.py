@@ -8,6 +8,7 @@ from student.models import State
 from trip.models import Trip
 # Create your models here.
 
+
 class Difficulty(enum.Enum):
     A = enum.Item(1, "A Trip")
     B = enum.Item(2, "B Trip")
@@ -17,6 +18,7 @@ nullable = {
     "blank": True,
     "null": True
 }
+
 
 # this should be admin maintained
 class Shelter(models.Model):
@@ -34,6 +36,7 @@ class Shelter(models.Model):
     def __str__(self):
         return self.name
 
+
 # this should be admin maintained
 class Trail(models.Model):
     name = models.CharField(max_length=255, **nullable)
@@ -43,6 +46,7 @@ class Trail(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Day(models.Model):
     trip = models.ForeignKey(Trip, related_name="days")
