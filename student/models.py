@@ -31,8 +31,8 @@ from django.db import models
 #         abstract = True
 
 
-# class Fopper(Student):
-#     pass
+class Fopper(models.Model):
+    pass
 
 
 # class Leader(Student):
