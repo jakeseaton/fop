@@ -44,7 +44,7 @@ class Day(models.Model):
     elev_up = models.IntegerField(**nullable)
     elev_down = models.IntegerField(**nullable)
     shelter_at_night = models.ForeignKey(Shelter, related_name="trip_days", **nullable)
-    trails = models.ManyToManyField(Trail, related_name="trip_days", **nullable)
+    trails = models.ManyToManyField(Trail, related_name="trip_days")
     water_on_trail = models.CharField(max_length=255, **nullable)
     views_and_notes = models.CharField(max_length=255, **nullable)
     campsite_and_water = models.CharField(max_length=255, **nullable)

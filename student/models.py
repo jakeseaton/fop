@@ -360,7 +360,7 @@ class Student(Contact):
     graduation_year = models.IntegerField(**nullable)
     # would also love to add geopoints so that you can visualize the homes of a fop trip on a map
 
-    huid = models.IntegerField()
+    huid = models.IntegerField(**nullable)
 
     tshirt_size = models.IntegerField(choices=TShirtSize, default=TShirtSize.large)
     # information from fun form
