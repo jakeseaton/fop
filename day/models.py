@@ -50,6 +50,9 @@ class Trail(models.Model):
 
 class Day(models.Model):
     trip = models.ForeignKey(Trip, related_name="days")
+    trails = models.ManyToManyField(Trail, related_name="trip_days")
+    shelter_at_night = models.ForeignKey(Shelter, related_name="trip_days", **nullable)
+
     is_first_day = models.BooleanField(default=False)
     is_last_day = models.BooleanField(default=False)
     day_number = models.IntegerField(**nullable)
@@ -57,8 +60,6 @@ class Day(models.Model):
     distance = models.IntegerField(**nullable)
     elev_up = models.IntegerField(**nullable)
     elev_down = models.IntegerField(**nullable)
-    shelter_at_night = models.ForeignKey(Shelter, related_name="trip_days", **nullable)
-    trails = models.ManyToManyField(Trail, related_name="trip_days")
     water_on_trail = models.BooleanField(default=False)
     water_on_trail_description = models.TextField(**nullable)
     views_and_notes = models.TextField(**nullable)

@@ -15,4 +15,4 @@ class Trip(models.Model):
     trip_year = models.IntegerField(**nullable)
 
     def __str__(self):
-        return self.trip_number
+        return "Trip Number: " + str(self.trip_number)

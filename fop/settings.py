@@ -40,8 +40,14 @@ INSTALLED_APPS = [
     'student',
     'trip',
     'day',
+    'rest_framework',
     'webpack_loader'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGE_SIZE': 10
+}
 
 WEBPACK_LOADER = {
     'DEFAULT': {
