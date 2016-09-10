@@ -372,7 +372,7 @@ class Student(Contact):
 
 
 class Fopper(Student):
-    # trip = models.ForeignKey('')
+    trip = models.ForeignKey('trip.Trip', null=True)
     harvard_financial_aid = models.BooleanField(default=False)
     requests_fop_financial_aid = models.BooleanField(default=False)
     receives_fop_financial_aid = models.BooleanField(default=False)
