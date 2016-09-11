@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'fundraising',
     'trip',
     'day',
+    'gear',
     'rest_framework',
     'webpack_loader'
 ]
