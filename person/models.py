@@ -37,6 +37,8 @@ class Donor(models.Model):
         abstract = True
 
 class Person(Contact, TimeStamp, Donor):
+    def __str__(self):
+        return "%s %s" % (self.first_name, self.last_name)
     pass
 
 
@@ -89,18 +91,26 @@ class Student(Person):
     allergy_info = models.TextField(**nullable)
     food_restrictions = models.TextField(**nullable)
 
+    pizza_slices = models.IntegerField(default=3)
 
-class Fopper(Student):
+class FinancialAid(models.Model):
+    harvard_financial_aid = models.BooleanField(default=False)
+    requests_fop_financial_aid = models.BooleanField(default=False)
+    receives_fop_financial_aid = models.BooleanField(default=False)
+    financial_aid_waiver = models.BooleanField(default=False)
+    relative_need = models.IntegerField(**nullable)
+    initial_fop_offer = models.IntegerField(**nullable)
+    final_fop_award = models.IntegerField(**nullable)
+
+    class Meta:
+        abstract = True
+
+
+class Fopper(Student, FinancialAid):
     # whether or not they got in to fop
     accepted = models.BooleanField(default=True)
 
     trip = models.ForeignKey('trip.Trip', related_name="students", **nullable)
-
-    harvard_financial_aid = models.BooleanField(default=False)
-    requests_fop_financial_aid = models.BooleanField(default=False)
-    receives_fop_financial_aid = models.BooleanField(default=False)
-
-    accepts_release_of_information = models.BooleanField(default=False)
 
     swimming_ability = models.IntegerField(choices=SwimmingAbility, blank=True, null=True)
 
@@ -113,9 +123,10 @@ class Fopper(Student):
     third_choice = models.IntegerField(choices=TripType, **nullable)
     fourth_choice = models.IntegerField(choices=TripType, **nullable)
     fifth_choice = models.IntegerField(choices=TripType, **nullable)
+    switch_alt = models.BooleanField(default=False)
+    service_alt = models.BooleanField(default=False)
 
-    def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
+    notes = models.TextField(**nullable)
 
 
 class Leader(Student):
@@ -134,8 +145,6 @@ class Leader(Student):
     # Yay pictures!
     image = models.ImageField(**nullable)
 
-    def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
 
 # class Trainee(Student):
 #     pass

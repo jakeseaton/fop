@@ -35,7 +35,7 @@ class Trip(models.Model):
 
     # drop_off_location
     # pick_up_location
-    pick_up_time = models.DateTimeField(**nullable)
+    pick_up_time = models.TimeField(**nullable)
     plb = models.CharField(max_length=255, **nullable)
     menu = models.IntegerField(choices=MenuType, default=MenuType.standard)
 
