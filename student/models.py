@@ -95,4 +95,5 @@ class Leader(Student):
     switch = models.BooleanField(default=False)
     preferred_difficulty = models.IntegerField(choices=Difficulty, **nullable)
     preferred_trip_type = models.IntegerField(choices=TripType, **nullable)
-    pass
+
+    image = models.ImageField(**nullable)
