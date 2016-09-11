@@ -131,15 +131,20 @@ class Fopper(Student, FinancialAid):
 
 class Leader(Student):
     is_sc = models.BooleanField(default=False)
-
+    year_trained = models.IntegerField(**nullable)
+    years_on_summer_staff = models.CharField(max_length=255, **nullable)
+    years_on_steering_committee = models.CharField(max_length=255, **nullable)
+    cc_number = models.CharField(max_length=255, **nullable)
     # if/when they were a fopper
     was_fopper = models.ForeignKey(Fopper, related_name="leader", **nullable)
 
-    switch = models.BooleanField(default=False)
+    trained_switch = models.BooleanField(default=False)
+    trained_service = models.BooleanField(default=False)
 
     preferred_difficulty = models.IntegerField(choices=Difficulty, **nullable)
     preferred_trip_type = models.IntegerField(choices=TripType, **nullable)
 
+    active = models.BooleanField(default=True)
     # need to do certifications
 
     # Yay pictures!
