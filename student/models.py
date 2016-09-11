@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from trip.types import Difficulty
+from trip.types import Difficulty, TripType
 from student.types import *
 # Create your models here.
 
@@ -59,7 +59,8 @@ class Student(Contact):
 
     tshirt_size = models.IntegerField(choices=TShirtSize, default=TShirtSize.large)
 
-    preferred_difficulty = models.IntegerField(choices=Difficulty, **nullable)
+    
+
     # information from fun form
     #
     # room number?
@@ -76,10 +77,23 @@ class Fopper(Student):
     accepts_release_of_information = models.BooleanField(default=False)
     swimming_ability = models.IntegerField(choices=SwimmingAbility, blank=True, null=True)
 
+    preferred_backpacking_difficulty = models.IntegerField(choices=Difficulty, **nullable)
+    preferred_switch_difficulty = models.IntegerField(choices=Difficulty, **nullable)
+    preferred_service_difficulty = models.IntegerField(choices=Difficulty, **nullable)
+
+    first_choice = models.IntegerField(choices=TripType, **nullable)
+    second_choice = models.IntegerField(choices=TripType, **nullable)
+    third_choice = models.IntegerField(choices=TripType, **nullable)
+    fourth_choice = models.IntegerField(choices=TripType, **nullable)
+    fifth_choice = models.IntegerField(choices=TripType, **nullable)
+
 
 class Leader(Student):
     is_sc = models.BooleanField(default=False)
     # if/when they were a fopper
     fopper = models.ForeignKey(Fopper, blank=True, null=True, related_name="was_fopper")
     switch = models.BooleanField(default=False)
-    pass
+    preferred_difficulty = models.IntegerField(choices=Difficulty, **nullable)
+    preferred_trip_type = models.IntegerField(choices=TripType, **nullable)
+
+    image = models.ImageField(**nullable)
