@@ -44,7 +44,7 @@ class Trip(models.Model):
     liason = models.CharField(max_length=255, **nullable)
 
     emergency_cell_phone = models.CharField(max_length=255, **nullable)
-    #trainer_cell_phone 
+    #trainer_cell_phone
 
     def __str__(self):
         return "Fop %s (%s)" % (self.number, self.year)

@@ -71,4 +71,4 @@ class Day(models.Model):
     cambridge_to_trail_distance = models.IntegerField(**nullable)
 
     def __str__(self):
-        return "FOP " + self.trip.trip_number + ": Day " + self.day_number
+        return "FOP " + str(self.trip.number) + ": Day " + str(self.day_number)

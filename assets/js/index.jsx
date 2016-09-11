@@ -5,6 +5,7 @@ import { Provider } from "react-redux"
 import { syncHistoryWithStore, routerReducer } from "react-router-redux"
 import { createStore, combineReducers } from "redux"
 import Planner from "./components/Planner.jsx"
+import $ from 'jquery'
 
 function reducer(state, action){
 	if (state == undefined) {
@@ -49,7 +50,8 @@ const reduxHistory = syncHistoryWithStore(browserHistory, store)
 class Index extends React.Component{
 	render(){
         window.foppie = foppie;
-		return <div className="container-fluid">Indexss: {this.props.children}</div>
+        foppie("trip").then(function(data) {console.log("fuck", data);})
+		return <div className="container-fluid">Index: {this.props.children}</div>
 	}
 }
 
