@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'day',
     'gear',
     'food',
+    'medical',
     'rest_framework',
     'webpack_loader'
 ]
