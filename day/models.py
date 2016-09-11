@@ -9,10 +9,6 @@ from trip.models import Trip
 # Create your models here.
 
 
-class Difficulty(enum.Enum):
-    A = enum.Item(1, "A Trip")
-    B = enum.Item(2, "B Trip")
-    C = enum.Item(3, "C Trip")
 
 nullable = {
     "blank": True,
@@ -65,7 +61,6 @@ class Day(models.Model):
     views_and_notes = models.TextField(**nullable)
     campsite_and_water = models.TextField(**nullable)
     pickup_info = models.TextField(**nullable)
-    difficulty = Difficulty
     cambridge_to_trail_distance = models.IntegerField(**nullable)
 
     def __str__(self):

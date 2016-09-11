@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from common import enum
 from django.db import models
-
+from trip.types import Difficulty
 # Create your models here.
 
 nullable = {
@@ -22,6 +22,16 @@ class Dorm(enum.Enum):
 class SchoolType(enum.Enum):
     public = enum.Item(1, "Public")
     private = enum.Item(2, "Private")
+
+
+class ActivityLevel(enum.Enum):
+    none = enum.Item(1, "None")
+
+
+class SwimmingAbility(enum.Enum):
+    none = enum.Item(1, "None")
+    casual = enum.Item(2, "Casual")
+    competetive = enum.Item(3, "Competetive")
 
 
 # a live updating count of how many shirts you need to order
@@ -294,27 +304,6 @@ class State(enum.Enum):
                 region_name='Wyoming',
                 timezone="MST")
 
-    @classmethod
-    def from_state(cls, state):
-        return cls.by_abbrev(state.abbrev.lower())
-
-    @classmethod
-    def publish_regions(cls):
-        regions = [value for value in cls.publish().values() if value['key'] != 'federal']
-        return sorted(regions, lambda x, y: x['value'] - y['value'])
-
-    @staticmethod
-    def return_all_abbrev():
-        return [Region.by_value(reg).abbrev for reg in range(1, 54)]
-
-    @staticmethod
-    def return_all_vals():
-        return range(1, 54)
-
-    @staticmethod
-    def all_state_vals():
-        return range(2, 54)
-
 
 class Contact(models.Model):
     first_name = models.CharField(max_length=255)
@@ -363,6 +352,8 @@ class Student(Contact):
     huid = models.IntegerField(**nullable)
 
     tshirt_size = models.IntegerField(choices=TShirtSize, default=TShirtSize.large)
+
+    preferred_difficulty = models.IntegerField(choices=Difficulty, **nullable)
     # information from fun form
     #
     # room number?
@@ -377,10 +368,12 @@ class Fopper(Student):
     requests_fop_financial_aid = models.BooleanField(default=False)
     receives_fop_financial_aid = models.BooleanField(default=False)
     accepts_release_of_information = models.BooleanField(default=False)
+    swimming_ability = models.IntegerField(choices=SwimmingAbility, blank=True, null=True)
 
 
 class Leader(Student):
     is_sc = models.BooleanField(default=False)
     # if/when they were a fopper
     fopper = models.ForeignKey(Fopper, blank=True, null=True, related_name="was_fopper")
+    switch = models.BooleanField(default=False)
     pass
