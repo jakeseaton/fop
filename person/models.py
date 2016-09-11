@@ -31,7 +31,7 @@ class Donor(models.Model):
     '''
     do_not_solicit = models.BooleanField(default=False)
     email_only = models.BooleanField(default=False)
-    special_donot = models.BooleanField(default=False)
+    special_donor = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
@@ -94,7 +94,7 @@ class Fopper(Student):
     # whether or not they got in to fop
     accepted = models.BooleanField(default=True)
 
-    trip = models.ForeignKey('trip.Trip', related_name="students", null=True)
+    trip = models.ForeignKey('trip.Trip', related_name="students", **nullable)
 
     harvard_financial_aid = models.BooleanField(default=False)
     requests_fop_financial_aid = models.BooleanField(default=False)
@@ -114,6 +114,9 @@ class Fopper(Student):
     fourth_choice = models.IntegerField(choices=TripType, **nullable)
     fifth_choice = models.IntegerField(choices=TripType, **nullable)
 
+    def __str__(self):
+        return "%s %s" % (self.first_name, self.last_name)
+
 
 class Leader(Student):
     is_sc = models.BooleanField(default=False)
@@ -130,7 +133,9 @@ class Leader(Student):
 
     # Yay pictures!
     image = models.ImageField(**nullable)
-    pass
+
+    def __str__(self):
+        return "%s %s" % (self.first_name, self.last_name)
 
 # class Trainee(Student):
 #     pass
