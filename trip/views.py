@@ -12,3 +12,10 @@ class TripList(generics.ListAPIView):
     serializer_class = TripSerializer
     filter_backends = [filters.DjangoFilterBackend]
     filter_fields = ['number', 'year']
+
+class TripDetail(generics.RetrieveUpdateAPIView):
+    """
+    API endpoint that allows accessing trip information
+    """
+    queryset = Trip.objects.all()
+    serializer_class = TripSerializer
