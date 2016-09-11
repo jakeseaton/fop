@@ -51,14 +51,19 @@ class DayType(enum.Enum):
 
 
 class Day(models.Model):
+    # aka activity
     day_type = models.IntegerField(choices=DayType, default=DayType.hike)
+
     trip = models.ForeignKey(Trip, related_name="days")
     trails = models.ManyToManyField(Trail, related_name="trip_days")
     shelter_at_night = models.ForeignKey(Shelter, related_name="trip_days", **nullable)
 
     is_first_day = models.BooleanField(default=False)
     is_last_day = models.BooleanField(default=False)
+    is_national_forest = models.BooleanField(default=False)
+
     day_number = models.IntegerField(**nullable)
+    date = models.DateField(**nullable)
     dropoff_info = models.TextField(**nullable)
     distance = models.IntegerField(**nullable)
     elev_up = models.IntegerField(**nullable)

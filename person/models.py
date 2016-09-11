@@ -110,7 +110,7 @@ class Fopper(Student, FinancialAid):
     # whether or not they got in to fop
     accepted = models.BooleanField(default=True)
 
-    trip = models.ForeignKey('trip.Trip', related_name="students", **nullable)
+    trip = models.ForeignKey('trip.Trip', related_name="participants", **nullable)
 
     swimming_ability = models.IntegerField(choices=SwimmingAbility, blank=True, null=True)
 

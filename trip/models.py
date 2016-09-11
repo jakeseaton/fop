@@ -47,3 +47,24 @@ class Trip(models.Model):
 
     def __str__(self):
         return "Fop %s (%s)" % (self.number, self.year)
+
+    daily_cost = models.FloatField(**nullable)
+    def compute_daily_cost(self):
+        '''
+        Coz wants to be able to compute the average daily cost of the trip
+        '''
+        return 0
+
+    def compute_leader_user_days(self):
+        return self.days.filter(is_nationa_forest=True).count() * self.leaders.count()
+
+    def compute_participant_user_days(self):
+        return self.days.filter(is_nationa_forest=True).count() * self.participants.count()
+
+    def compute_total_user_days(self):
+        return self.compute_participant_user_days() + self.computer_leader_user_days()
+
+    def compute_trip_revenue(self):
+        tuition = 400
+        return self.participants.count() * tuition
+
