@@ -19,21 +19,25 @@ var reducers = combineReducers({
 })
 
 function foppie(model, filters){
-    var key, value, filter_string;
+    var key, value;
+    var filter_string = "/";
     var filter_arr = [];
     for (key in filters){
         filter_arr.push(key + "=" + filters[key]);
     }
 
-    if (filters){
-        filter_string = "?" + filter_arr.join("&");
+    if (typeof(filters) == "number") {
+        filter_string += filters
+    }
+    else if (typeof(filters) == "object") {
+        filter_string += "?" + filter_arr.join("&");
     }
     else {
-        filter_string = "";
+        console.log("That's neither a filter dictionary nor an id.");
     }
 
     return $.ajax({
-        url: "http://127.0.0.1:8000/" + model.toLowerCase() + "/" + filter_string,
+        url: "http://127.0.0.1:8000/" + model.toLowerCase() + filter_string,
         success: function(data) {
             console.log(data);
             return data;
