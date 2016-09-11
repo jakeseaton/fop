@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='trip',
-            name='leaders',
-            field=models.ManyToManyField(null=True, to='student.Leader'),
-        ),
+        # migrations.AddField(
+        #     model_name='trip',
+        #     name='leaders',
+        #     field=models.ManyToManyField(null=True, to='student.Leader'),
+        # ),
         migrations.AddField(
             model_name='trip',
             name='trip_year',

@@ -32,9 +32,9 @@ class Migration(migrations.Migration):
             name='difficulty',
             field=models.IntegerField(blank=True, choices=[(1, b'A Trip'), (3, b'C Trip'), (2, b'B Trip')], null=True),
         ),
-        migrations.AlterField(
-            model_name='trip',
-            name='leaders',
-            field=models.ManyToManyField(related_name='trips', to='student.Leader'),
-        ),
+        # migrations.AlterField(
+        #     model_name='trip',
+        #     name='leaders',
+        #     field=models.ManyToManyField(related_name='trips', to='student.Leader'),
+        # ),
     ]

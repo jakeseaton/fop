@@ -12,11 +12,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='trip',
-            name='leaders',
-            field=models.ManyToManyField(to='student.Leader'),
-        ),
+        # migrations.AlterField(
+        #     model_name='trip',
+        #     name='leaders',
+        #     field=models.ManyToManyField(to='student.Leader'),
+        # ),
         migrations.AlterField(
             model_name='trip',
             name='trip_number',
