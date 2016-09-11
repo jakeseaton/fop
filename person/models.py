@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 
 from django.db import models
 from mixins import TimeStamp, nullable
@@ -26,7 +25,18 @@ class Contact(models.Model):
         abstract = True
 
 
-class Person(Contact, TimeStamp):
+class Donor(models.Model):
+    '''
+    A potential Donor
+    '''
+    do_not_solicit = models.BooleanField(default=False)
+    email_only = models.BooleanField(default=False)
+    special_donot = models.BooleanField(default=False)
+
+    class Meta:
+        abstract = True
+
+class Person(Contact, TimeStamp, Donor):
     pass
 
 
