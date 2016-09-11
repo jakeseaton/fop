@@ -26,14 +26,10 @@ module.exports = {
 
   module: {
     loaders: [
-      // we pass the output from babel loader to react-hot loader
       { 
         test: /\.jsx?$/, 
         exclude: /node_modules/, 
-        loader: 'babel-loader',  
-        query: {
-          presets: ['es2015', 'react']
-        }
+        loaders: ['babel-loader'],
       },
       { test: /\.json$/, loader: "json-loader"}
     ],

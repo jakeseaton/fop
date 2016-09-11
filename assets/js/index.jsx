@@ -51,7 +51,7 @@ class Index extends React.Component{
 	render(){
         window.foppie = foppie;
         foppie("trip").then(function(data) {console.log("fuck", data);})
-		return <div className="container-fluid">Index: {this.props.children}</div>
+		return <div className="container-fluid">Indexxxdd: {this.props.children}</div>
 	}
 }
 
