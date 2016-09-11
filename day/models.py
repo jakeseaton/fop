@@ -4,7 +4,7 @@ from django.db import models
 
 from common import enum
 
-from student.models import State
+from person.types import State
 from trip.models import Trip
 # Create your models here.
 

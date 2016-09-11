@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from student.models import Leader
+from person.models import Leader
 from trip.types import Difficulty, TripType
 from food.types import MenuType
 from common import enum
@@ -21,7 +21,7 @@ class BaseCamp(enum.Enum):
 class Trip(models.Model):
     number = models.IntegerField(**nullable)
     description = models.CharField(max_length=255, **nullable)
-    # leaders = models.ManyToManyField(Leader, related_name="trips")
+    leaders = models.ManyToManyField(Leader, related_name="trips")
     year = models.IntegerField(**nullable)
 
     basecamp = models.IntegerField(choices=BaseCamp, **nullable)
