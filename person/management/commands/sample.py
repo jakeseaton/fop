@@ -14,5 +14,7 @@ class Command(BaseCommand):
             j = json.loads(df.to_json(orient="records"))
             for fopper in j:
                 fopper['requests_fop_financial_aid'] = fopper.pop('requests_aid')
-                print Fopper(**fopper)
-
+                fopper['birthdate'] = parse(fopper['birthdate'])
+                fopper, created = Fopper.objects.get_or_create(**fopper)
+                if created:
+                    print "Created Fopper", fopper

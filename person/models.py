@@ -107,6 +107,9 @@ class FinancialAid(models.Model):
 
 
 class Fopper(Student, FinancialAid):
+    def __init__(self, *args, **kwargs):
+        super(Fopper, self).__init__(*args, **kwargs)
+        self.current_student_type = StudentType.fopper
     # whether or not they got in to fop
     accepted = models.BooleanField(default=True)
 
