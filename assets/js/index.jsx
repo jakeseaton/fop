@@ -18,16 +18,30 @@ var reducers = combineReducers({
 })
 
 function foppie(model, filters){
-    $.ajax({
-        url: "http://127.0.0.1:8000/#{}/"
-    }).then(
-        function(data){
-            console.log("werd dude", data);
-        }
-    );
-    console.log("foolala", thing);
-}
+    var key, value, filter_string;
+    var filter_arr = [];
+    for (key in filters){
+        filter_arr.push(key + "=" + filters[key]);
+    }
 
+    if (filters){
+        filter_string = "?" + filter_arr.join("&");
+    }
+    else {
+        filter_string = "";
+    }
+
+    return $.ajax({
+        url: "http://127.0.0.1:8000/" + model.toLowerCase() + "/" + filter_string,
+        success: function(data) {
+            console.log(data);
+            return data;
+        },
+        error: function(data) {
+            console.log("There was an error with your FOP request. Go hike a mountain.");
+        }
+    });
+}
 
 const store = createStore(reducers)
 const reduxHistory = syncHistoryWithStore(browserHistory, store)
@@ -35,9 +49,7 @@ const reduxHistory = syncHistoryWithStore(browserHistory, store)
 class Index extends React.Component{
 
 	render(){
-        var script = document.createElement('script');
-        script.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js";
-        document.getElementsByTagName('head')[0].appendChild(script);
+        window.foppie = foppie;
 		return <div>Index!</div>
 	}
 }
