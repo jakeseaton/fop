@@ -49,7 +49,7 @@ const reduxHistory = syncHistoryWithStore(browserHistory, store)
 class Index extends React.Component{
 	render(){
         window.foppie = foppie;
-		return <div className="container-fluid">Index: {this.props.children}</div>
+		return <div className="container-fluid">Indexss: {this.props.children}</div>
 	}
 }
 

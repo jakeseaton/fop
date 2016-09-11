@@ -1,23 +1,15 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from mixins import TimeStamp, nullable
+from person.types import *
 from trip.types import Difficulty, TripType
-from student.types import *
-# Create your models here.
 
-nullable = {
-    "blank": True,
-    "null": True
-}
+class Contact(models.Model):
+    '''
+    Abstract model for creating people that you can contact
+    '''
 
-class TimeStamp(models.Model): 
-    created = models.DateTimeField(auto_now_add=True, **nullable)
-    updated = models.DateTimeField(auto_now=True, **nullable)    
-
-    class Meta:
-        abstract = True 
-
-class Contact(TimeStamp):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255, **nullable)
@@ -34,56 +26,72 @@ class Contact(TimeStamp):
         abstract = True
 
 
-class Parent(Contact):
-    child = models.ForeignKey("student.Fopper", related_name="parent")
+class Person(Contact, TimeStamp):
+    pass
 
 
-class Student(Contact):
+class Parent(Person):
+    '''
+    A parent is an emergency contact or someone that you
+    might solicit for a donation. They can have one or many students.
+
+    (Should we also make them able to have been foppers themselves?)
+    '''
+    students = models.ManyToManyField("person.Student", related_name="parents")
+
+
+class Student(Person):
+    '''
+    A student is a level above a Fopper, a Leader, or a Trainee
+    '''
+
+    harvard_email = models.CharField(max_length=255, **nullable)
+    huid = models.IntegerField(**nullable)
 
     middle_name = models.CharField(max_length=255, **nullable)
     nickname = models.CharField(max_length=255, **nullable)
 
     # enums
     house = models.IntegerField(choices=House, **nullable)
+    current_student_type = models.IntegerField(choices=StudentType)
     dorm = models.IntegerField(choices=Dorm, **nullable)
 
+    # name of their high school
     school = models.CharField(max_length=255, **nullable)
+
+    # public/private
     school_type = models.IntegerField(choices=SchoolType, default=SchoolType.public)
 
     height_feet = models.CharField(max_length=255, **nullable)
     height_inches = models.CharField(max_length=255, **nullable)
+    tshirt_size = models.IntegerField(choices=TShirtSize, default=TShirtSize.large)
 
-    # this is going to be important for matching people...would be great if it could
-    # be an enum but fuck the gender binary
-    gender = models.CharField(max_length=255, **nullable)
+    # fuck the gender binary
+    gender = models.IntegerField(choices=Gender)
 
     # we need to be able to compute their age
     birthdate = models.DateField(**nullable)
     graduation_year = models.IntegerField(**nullable)
+
     # would also love to add geopoints so that you can visualize the homes of a fop trip on a map
-
-    huid = models.IntegerField(**nullable)
-
-    tshirt_size = models.IntegerField(choices=TShirtSize, default=TShirtSize.large)
 
     significant_allergy = models.BooleanField(default=False)
     allergy_info = models.TextField(**nullable)
     food_restrictions = models.TextField(**nullable)
 
-    # information from fun form
-    #
-    # room number?
-
-    class Meta:
-        abstract = True
-
 
 class Fopper(Student):
-    trip = models.ForeignKey('trip.Trip', null=True)
+    # whether or not they got in to fop
+    accepted = models.BooleanField(default=True)
+
+    trip = models.ForeignKey('trip.Trip', related_name="students", null=True)
+
     harvard_financial_aid = models.BooleanField(default=False)
     requests_fop_financial_aid = models.BooleanField(default=False)
     receives_fop_financial_aid = models.BooleanField(default=False)
+
     accepts_release_of_information = models.BooleanField(default=False)
+
     swimming_ability = models.IntegerField(choices=SwimmingAbility, blank=True, null=True)
 
     preferred_backpacking_difficulty = models.IntegerField(choices=Difficulty, **nullable)
@@ -99,10 +107,20 @@ class Fopper(Student):
 
 class Leader(Student):
     is_sc = models.BooleanField(default=False)
+
     # if/when they were a fopper
-    fopper = models.ForeignKey(Fopper, blank=True, null=True, related_name="was_fopper")
+    was_fopper = models.ForeignKey(Fopper, related_name="leader", **nullable)
+
     switch = models.BooleanField(default=False)
+
     preferred_difficulty = models.IntegerField(choices=Difficulty, **nullable)
     preferred_trip_type = models.IntegerField(choices=TripType, **nullable)
 
+    # need to do certifications
+
+    # Yay pictures!
     image = models.ImageField(**nullable)
+    pass
+
+# class Trainee(Student):
+#     pass

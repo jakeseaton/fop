@@ -41,7 +41,17 @@ class Trail(models.Model):
         return self.name
 
 
+class DayType(enum.Enum):
+    drop_off = enum.Item(1, "Drop Off")
+    hike = enum.Item(2, "Hike")
+    switch = enum.Item(3, "Switch")
+    canoe = enum.Item(4, "Canoe")
+    service = enum.Item(5, "Service")
+    pick_up = enum.Item(6, "Pick Up")
+
+
 class Day(models.Model):
+    day_type = models.IntegerField(choices=DayType, default=DayType.hike)
     trip = models.ForeignKey(Trip, related_name="days")
     trails = models.ManyToManyField(Trail, related_name="trip_days")
     shelter_at_night = models.ForeignKey(Shelter, related_name="trip_days", **nullable)
