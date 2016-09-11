@@ -16,7 +16,6 @@ class BaseCamp(enum.Enum):
     maine = enum.Item(1, "Maine")
     new_hampshire = enum.Item(2, "New Hampshire")
 
-
 # Create your models here.
 class Trip(models.Model):
     number = models.IntegerField(**nullable)

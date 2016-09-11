@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'gear',
     'food',
     'medical',
+    'transport',
     'rest_framework',
     'webpack_loader'
 ]
