@@ -19,6 +19,7 @@ class Meal(models.Model):
     '''
     ingredients = models.ManyToManyField(FoodItem, related_name="meals")
 
+
 class Menu(models.Model):
 	meals = models.ManyToManyField(Meal)
 

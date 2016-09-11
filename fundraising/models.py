@@ -12,6 +12,7 @@ class SolicitationCategory(enum.Enum):
     '''
     money = enum.Item(1, "Money")
 
+
 # Create your models here.
 class Solicitation(TimeStamp):
     person = models.ForeignKey("person.Person", related_name="solicitations")
