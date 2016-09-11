@@ -36,6 +36,9 @@ class Contact(TimeStamp):
 
 class Parent(Contact):
     child = models.ForeignKey("student.Fopper", related_name="parent")
+    class Meta:
+            abstract = True
+
 
 
 class Student(Contact):
@@ -96,6 +99,9 @@ class Fopper(Student):
     fourth_choice = models.IntegerField(choices=TripType, **nullable)
     fifth_choice = models.IntegerField(choices=TripType, **nullable)
 
+    class Meta:
+        abstract = True
+
 
 class Leader(Student):
     is_sc = models.BooleanField(default=False)
@@ -106,3 +112,5 @@ class Leader(Student):
     preferred_trip_type = models.IntegerField(choices=TripType, **nullable)
 
     image = models.ImageField(**nullable)
+    class Meta:
+        abstract = True
