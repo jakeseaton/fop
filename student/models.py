@@ -10,8 +10,14 @@ nullable = {
     "null": True
 }
 
+class TimeStamp(models.Model): 
+    created = models.DateTimeField(auto_now_add=True, **nullable)
+    updated = models.DateTimeField(auto_now=True, **nullable)    
 
-class Contact(models.Model):
+    class Meta:
+        abstract = True 
+
+class Contact(TimeStamp):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255, **nullable)
@@ -51,6 +57,7 @@ class Student(Contact):
     # be an enum but fuck the gender binary
     gender = models.CharField(max_length=255, **nullable)
 
+    # we need to be able to compute their age
     birthdate = models.DateField(**nullable)
     graduation_year = models.IntegerField(**nullable)
     # would also love to add geopoints so that you can visualize the homes of a fop trip on a map

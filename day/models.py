@@ -9,7 +9,6 @@ from trip.models import Trip
 # Create your models here.
 
 
-
 nullable = {
     "blank": True,
     "null": True
@@ -19,8 +18,7 @@ nullable = {
 # this should be admin maintained
 class Shelter(models.Model):
     name = models.CharField(max_length=255, **nullable)
-    state = State
-    has_good_water = models.BooleanField(default=False)
+    water = models.BooleanField(default=True)
     water_description = models.TextField(**nullable)
     has_platforms = models.BooleanField(default=False)
     sleeping_space_description = models.TextField(**nullable)
@@ -36,7 +34,6 @@ class Shelter(models.Model):
 # this should be admin maintained
 class Trail(models.Model):
     name = models.CharField(max_length=255, **nullable)
-    state = State
     has_good_water = models.BooleanField(default=False)
     water_description = models.TextField(**nullable)
 
