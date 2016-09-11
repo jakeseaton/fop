@@ -123,10 +123,14 @@ class Fopper(Student, FinancialAid):
     third_choice = models.IntegerField(choices=TripType, **nullable)
     fourth_choice = models.IntegerField(choices=TripType, **nullable)
     fifth_choice = models.IntegerField(choices=TripType, **nullable)
+
     switch_alt = models.BooleanField(default=False)
     service_alt = models.BooleanField(default=False)
 
     notes = models.TextField(**nullable)
+
+
+    allergy = models.IntegerField(default=0, help_text="This is just for development of the algorithm")
 
 
 class Leader(Student):
