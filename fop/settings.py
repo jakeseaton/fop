@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'webpack_loader', 
+    'django_extensions'
+]
+
+CUSTOM_APPS = [
     'person',
     'fundraising',
     'trip',
@@ -45,10 +52,11 @@ INSTALLED_APPS = [
     'food',
     'medical',
     'transport',
-    'rest_framework',
-    'webpack_loader', 
-    'django_extensions'
 ]
+
+INSTALLED_APPS += CUSTOM_APPS
+
+SHELL_PLUS_POST_IMPORTS = [(a + ".types", "*") for a in CUSTOM_APPS]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
