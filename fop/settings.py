@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'medical',
     'transport',
     'rest_framework',
-    'webpack_loader'
+    'webpack_loader', 
+    'django_extensions'
 ]
 
 REST_FRAMEWORK = {

@@ -4,6 +4,7 @@ import pandas as pd
 from person.models import Fopper
 import json
 from django.conf import settings
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
         LOCATION = "%s/person/sample_data/" % settings.BASE_DIR
